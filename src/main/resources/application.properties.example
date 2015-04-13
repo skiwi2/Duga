@@ -21,4 +21,4 @@ env.chatMaxBurst = 2
 env.chatMinimumDelay = 500
 env.userMappings = skiwi2 -> skiwi, Zomis -> SimonAndréForsberg, janosgyerik -> janos
 
-env.stackApiKey = xxxxx 
+env.stackAPIKey = xxxxx
