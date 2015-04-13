@@ -8,3 +8,6 @@ MANIFEST.MF
 target/
 
 application.properties
+
+*.iml
+.idea/
