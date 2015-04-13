@@ -19,6 +19,6 @@ env.roomId = 16134
 env.chatThrottle = 10000
 env.chatMaxBurst = 2
 env.chatMinimumDelay = 500
-env.userMappings = skiwi2 -> skiwi, Zomis -> SimonAndréForsberg, janosgyerik -> janos
+env.userMappings = skiwi2 -> skiwi, Zomis -> SimonAndrÃ©Forsberg, janosgyerik -> janos
 
 env.stackApiKey = xxxxx 
