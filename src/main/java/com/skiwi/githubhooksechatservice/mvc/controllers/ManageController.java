@@ -103,7 +103,7 @@ public class ManageController {
     
     @RequestMapping(value = "/manage", method = RequestMethod.GET)
     public String manage() {
-        return "manage";
+        return "dwi/index";
     }
 
     @RequestMapping(value = "/config/track", method = RequestMethod.GET)
