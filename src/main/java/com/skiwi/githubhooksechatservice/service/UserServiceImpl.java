@@ -1,11 +1,11 @@
 package com.skiwi.githubhooksechatservice.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.skiwi.githubhooksechatservice.dao.UserDAO;
 import com.skiwi.githubhooksechatservice.model.DugaUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -23,4 +23,8 @@ public class UserServiceImpl implements UserService {
 		userDAO.createUser(username, password);
 	}
 
+	@Override
+	public DugaUser getAuthenticatedUser() {
+		return getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+	}
 }

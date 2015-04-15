@@ -28,6 +28,8 @@ public class DugaUser {
 	)
 	private Role role;
 
+	private String githubLogin;
+
 	public Integer getId() {
 		return id;
 	}
@@ -58,6 +60,13 @@ public class DugaUser {
 
 	public void setRole(Role role) {
 		this.role = role;
-	}	
+	}
 
+	public String getGithubLogin() {
+		return githubLogin;
+	}
+
+	public void setGithubLogin(final String githubLogin) {
+		this.githubLogin = githubLogin;
+	}
 }
