@@ -38,6 +38,18 @@ public class RepositoryLinkDAOImpl implements RepositoryLinkDAO {
     }
 
     @Override
+    public RepositoryLink getRepositoryLink(final String repositoryOwner, final String repositoryName) {
+        Query query = openSession().createQuery("from RepositoryLink link where link.githubRepository.owner = :owner and link.githubRepository.name = :name");
+        query.setParameter("owner", repositoryOwner);
+        query.setParameter("name", repositoryName);
+        RepositoryLink repositoryLink = (RepositoryLink)query.uniqueResult();
+        if (repositoryLink == null) {
+            throw new IllegalArgumentException("No RepositoryLink exists for owner = " + repositoryOwner + " and name = " + repositoryName);
+        }
+        return repositoryLink;
+    }
+
+    @Override
     public List<RepositoryLink> getRepositoryLinks(final String repositoryOwner) {
         Query query = openSession().createQuery("from RepositoryLink link where link.githubRepository.owner = :owner");
         query.setParameter("owner", repositoryOwner);

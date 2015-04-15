@@ -11,6 +11,8 @@ import java.util.List;
 public interface RepositoryLinkService {
     RepositoryLink getRepositoryLink(final Integer id);
 
+    RepositoryLink getRepositoryLink(final String repositoryOwner, final String repositoryName);
+
     List<RepositoryLink> getRepositoryLinks();
 
     List<RepositoryLink> getRepositoryLinks(final String repositoryOwner);

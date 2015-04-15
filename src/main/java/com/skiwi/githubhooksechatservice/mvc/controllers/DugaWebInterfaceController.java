@@ -1,8 +1,11 @@
 package com.skiwi.githubhooksechatservice.mvc.controllers;
 
+import com.skiwi.githubhooksechatservice.model.DugaUser;
+import com.skiwi.githubhooksechatservice.model.RepositoryLink;
 import com.skiwi.githubhooksechatservice.service.RepositoryLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,5 +40,13 @@ public class DugaWebInterfaceController {
     public String postLinkRepository(@RequestParam("github_repository_owner") final String githubRepositoryOwner, @RequestParam("github_repository_name") final String githubRepositoryName, @RequestParam("github_repository_url") final String githubRepositoryUrl) {
         repositoryLinkService.createRepositoryLink(githubRepositoryOwner, githubRepositoryName, githubRepositoryUrl);
         return "dwi/index";
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}", method = RequestMethod.GET)
+    public ModelAndView repositoryLink(@PathVariable("owner") final String owner, @PathVariable("name") final String name) {
+        ModelAndView modelAndView = new ModelAndView("dwi/repository_link");
+        RepositoryLink repositoryLink = repositoryLinkService.getRepositoryLink(owner, name);
+        modelAndView.addObject("repositoryLink", repositoryLink);
+        return modelAndView;
     }
 }

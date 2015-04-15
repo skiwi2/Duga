@@ -1,9 +1,11 @@
 package com.skiwi.githubhooksechatservice.init;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.core.annotation.Order;
+import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 @Order(1)
@@ -30,4 +32,11 @@ public class Initializer extends
 		return new String[] { "/" };
 	}
 
+	@Override
+	protected Filter[] getServletFilters() {
+		OpenSessionInViewFilter openSessionInViewFilter = new OpenSessionInViewFilter();
+		openSessionInViewFilter.setSessionFactoryBeanName("sessionFactory");
+
+		return new Filter[]{ openSessionInViewFilter} ;
+	}
 }

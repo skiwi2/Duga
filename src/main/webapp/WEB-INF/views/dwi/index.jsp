@@ -18,8 +18,7 @@ Welcome ${username}.
   <table>
     <c:forEach var="link" items="${repositoryLinks}">
       <tr>
-        <td>${link.githubRepository.owner}</td>
-        <td>${link.githubRepository.name}</td>
+        <td><a href="<c:url value="/dwi/repository_link/${link.githubRepository.owner}/${link.githubRepository.name}" />">${link.githubRepository.owner}/${link.githubRepository.name}</a></td>
       </tr>
     </c:forEach>
   </table>

@@ -11,6 +11,8 @@ import java.util.List;
 public interface RepositoryLinkDAO {
     RepositoryLink getRepositoryLink(final Integer id);
 
+    RepositoryLink getRepositoryLink(final String repositoryOwner, final String repositoryName);
+
     List<RepositoryLink> getRepositoryLinks(final String repositoryOwner);
 
     RepositoryLink createRepositoryLink(final String repositoryOwner, final String repositoryName, final String repositoryUrl, final DugaUser dugaUser);
