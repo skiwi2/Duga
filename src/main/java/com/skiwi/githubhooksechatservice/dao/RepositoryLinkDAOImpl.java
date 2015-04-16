@@ -57,6 +57,13 @@ public class RepositoryLinkDAOImpl implements RepositoryLinkDAO {
     }
 
     @Override
+    public List<RepositoryLink> getRepositoryLinks(final DugaUser user) {
+        Query query = openSession().createQuery("from RepositoryLink link where :user in elements(link.dugaUsers)");
+        query.setParameter("user", user);
+        return query.list();
+    }
+
+    @Override
     public RepositoryLink createRepositoryLink(final String repositoryOwner, final String repositoryName, final String repositoryUrl, final DugaUser dugaUser) {
         RepositoryLink repositoryLink = new RepositoryLink();
         GithubRepository githubRepository = githubRepositoryDAO.createRepository(repositoryOwner, repositoryName, repositoryUrl);

@@ -35,12 +35,17 @@ public class RepositoryLinkServiceImpl implements RepositoryLinkService {
     @Override
     public List<RepositoryLink> getRepositoryLinks() {
         DugaUser currentUser = userService.getAuthenticatedUser();
-        return getRepositoryLinks(currentUser.getGithubLogin());
+        return getRepositoryLinks(currentUser);
     }
 
     @Override
     public List<RepositoryLink> getRepositoryLinks(final String repositoryOwner) {
         return repositoryLinkDAO.getRepositoryLinks(repositoryOwner);
+    }
+
+    @Override
+    public List<RepositoryLink> getRepositoryLinks(final DugaUser user) {
+        return repositoryLinkDAO.getRepositoryLinks(user);
     }
 
     @Override

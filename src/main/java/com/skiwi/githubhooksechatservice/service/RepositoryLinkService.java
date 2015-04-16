@@ -17,6 +17,8 @@ public interface RepositoryLinkService {
 
     List<RepositoryLink> getRepositoryLinks(final String repositoryOwner);
 
+    List<RepositoryLink> getRepositoryLinks(final DugaUser user);
+
     RepositoryLink createRepositoryLink(final String repositoryOwner, final String repositoryName, final String repositoryUrl);
 
     RepositoryLink createRepositoryLink(final String repositoryOwner, final String repositoryName, final String repositoryUrl, final DugaUser dugaUser);

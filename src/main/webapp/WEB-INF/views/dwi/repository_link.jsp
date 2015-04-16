@@ -14,7 +14,7 @@
 <body>
 Repository link for ${repositoryLink.githubRepository.owner}/${repositoryLink.githubRepository.name}.
 <p>
-  <b>Github Repository</b><br>
+  <b>Github Repository</b> <a href="/edit_repository_link">Edit</a><br>
   <table>
     <tr>
       <td>Owner: </td>
