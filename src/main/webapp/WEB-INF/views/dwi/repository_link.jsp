@@ -10,25 +10,14 @@
 <html>
 <head>
     <title>Repository link for ${repositoryLink.githubRepository.owner}/${repositoryLink.githubRepository.name}</title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="<c:url value="/resources/dwi/framework.js" />"></script>
 </head>
 <body>
 Repository link for ${repositoryLink.githubRepository.owner}/${repositoryLink.githubRepository.name}.
-<p>
-  <b>Github Repository</b> <a href="/edit_repository_link">Edit</a><br>
-  <table>
-    <tr>
-      <td>Owner: </td>
-      <td>${repositoryLink.githubRepository.owner}</td>
-    </tr>
-  <tr>
-    <td>Name: </td>
-    <td>${repositoryLink.githubRepository.name}</td>
-  </tr>
-  <tr>
-    <td>Url: </td>
-    <td>${repositoryLink.githubRepository.url}</td>
-  </tr>
-  </table>
+<p id="github_repository">
+  <jsp:include page="/dwi/repository_link/${repositoryLink.githubRepository.owner}/${repositoryLink.githubRepository.name}/fragment/github_repository/normal" />
 </p>
 <p>
   <b>Users</b><br>

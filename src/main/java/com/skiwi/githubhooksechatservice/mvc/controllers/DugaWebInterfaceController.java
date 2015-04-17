@@ -1,7 +1,9 @@
 package com.skiwi.githubhooksechatservice.mvc.controllers;
 
 import com.skiwi.githubhooksechatservice.model.DugaUser;
+import com.skiwi.githubhooksechatservice.model.GithubRepository;
 import com.skiwi.githubhooksechatservice.model.RepositoryLink;
+import com.skiwi.githubhooksechatservice.service.GithubRepositoryService;
 import com.skiwi.githubhooksechatservice.service.RepositoryLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/dwi")
 public class DugaWebInterfaceController {
+    @Autowired
+    private GithubRepositoryService githubRepositoryService;
+
     @Autowired
     private RepositoryLinkService repositoryLinkService;
 
@@ -47,6 +52,35 @@ public class DugaWebInterfaceController {
         ModelAndView modelAndView = new ModelAndView("dwi/repository_link");
         RepositoryLink repositoryLink = repositoryLinkService.getRepositoryLink(owner, name);
         modelAndView.addObject("repositoryLink", repositoryLink);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/github_repository/normal", method = RequestMethod.GET)
+         public ModelAndView repositoryLinkFragmentGithubRepositoryNormal(@PathVariable("owner") final String owner, @PathVariable("name") final String name) {
+        ModelAndView modelAndView = new ModelAndView("dwi/repository_link_fragment_github_repository_normal");
+        GithubRepository githubRepository = githubRepositoryService.getRepository(owner, name);
+        modelAndView.addObject("githubRepository", githubRepository);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/github_repository/edit", method = RequestMethod.GET)
+    public ModelAndView repositoryLinkFragmentGithubRepositoryEdit(@PathVariable("owner") final String owner, @PathVariable("name") final String name) {
+        ModelAndView modelAndView = new ModelAndView("dwi/repository_link_fragment_github_repository_edit");
+        GithubRepository githubRepository = githubRepositoryService.getRepository(owner, name);
+        modelAndView.addObject("githubRepository", githubRepository);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/github_repository/edit", method = RequestMethod.POST)
+    public ModelAndView postRepositoryLinkFragmentGithubRepositoryEdit(@PathVariable("owner") final String owner, @PathVariable("name") final String name, @RequestParam("github_repository_owner") final String githubRepositoryOwner, @RequestParam("github_repository_name") final String githubRepositoryName, @RequestParam("github_repository_url") final String githubRepositoryUrl) {
+        GithubRepository githubRepository = githubRepositoryService.getRepository(owner, name);
+        githubRepository.setOwner(githubRepositoryOwner);
+        githubRepository.setName(githubRepositoryName);
+        githubRepository.setUrl(githubRepositoryUrl);
+        githubRepositoryService.updateRepository(githubRepository);
+
+        ModelAndView modelAndView = new ModelAndView("dwi/repository_link_fragment_github_repository_normal");
+        modelAndView.addObject("githubRepository", githubRepository);
         return modelAndView;
     }
 }
