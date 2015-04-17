@@ -23,7 +23,7 @@ function loadFragmentInto(fragmentUrl, elementId) {
 
 function saveFragment(fragmentName) {
     var fragmentUrl = getLocation() + "/fragment/" + fragmentName + "/edit";
-    $.post(fragmentUrl, $(fragmentName + "_form").serialize(), function(data) {
+    $.post(fragmentUrl, serializeForm(fragmentName), function(data) {
         showNormal(fragmentName);
     });
 }
