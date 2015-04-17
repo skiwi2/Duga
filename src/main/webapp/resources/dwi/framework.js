@@ -8,6 +8,7 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
 });
 
 function showNormal(fragmentName) {
+    console.log(getLocation() + "/fragment/" + fragmentName + "/normal");
     loadFragmentInto(getLocation() + "/fragment/" + fragmentName + "/normal", fragmentName);
 }
 

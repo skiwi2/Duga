@@ -19,15 +19,8 @@ Repository link for ${repositoryLink.githubRepository.owner}/${repositoryLink.gi
 <p id="github_repository">
   <jsp:include page="/dwi/repository_link/${repositoryLink.githubRepository.owner}/${repositoryLink.githubRepository.name}/fragment/github_repository/normal" />
 </p>
-<p>
-  <b>Users</b><br>
-  <table>
-    <c:forEach var="user" items="${repositoryLink.dugaUsers}">
-      <tr>
-        <td>${user.login}</td>
-      </tr>
-    </c:forEach>
-  </table>
+<p id="users">
+  <jsp:include page="/dwi/repository_link/${repositoryLink.githubRepository.owner}/${repositoryLink.githubRepository.name}/fragment/users/normal" />
 </p>
 </body>
 </html>

@@ -83,4 +83,30 @@ public class DugaWebInterfaceController {
         modelAndView.addObject("githubRepository", githubRepository);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/users/normal", method = RequestMethod.GET)
+    public ModelAndView repositoryLinkFragmentUsers(@PathVariable("owner") final String owner, @PathVariable("name") final String name) {
+        ModelAndView modelAndView = new ModelAndView("dwi/repository_link_fragment_users_normal");
+        RepositoryLink repositoryLink = repositoryLinkService.getRepositoryLink(owner, name);
+        modelAndView.addObject("repositoryLink", repositoryLink);
+        modelAndView.addObject("dugaUsers", repositoryLink.getDugaUsers());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/add_user/normal", method = RequestMethod.GET)
+    public String repositoryLinkFragmentAddUserNormal(@PathVariable("owner") final String owner, @PathVariable("name") final String name) {
+        return "dwi/repository_link_fragment_add_user_normal";
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/add_user/edit", method = RequestMethod.GET)
+    public String repositoryLinkFragmentAddUserEdit(@PathVariable("owner") final String owner, @PathVariable("name") final String name) {
+        return "dwi/repository_link_fragment_add_user_edit";
+    }
+
+    @RequestMapping(value = "/repository_link/{owner}/{name}/fragment/add_user/edit", method = RequestMethod.POST)
+    public String postRepositoryLinkFragmentAddUserEdit(@PathVariable("owner") final String owner, @PathVariable("name") final String name, @RequestParam("username") final String username) {
+        //TODO actually add user
+
+        return "dwi/repository_link_fragment_add_user_normal";
+    }
 }
